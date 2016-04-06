@@ -13,6 +13,8 @@
 		66036FE21CB4ED200083B0C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66036FE11CB4ED200083B0C4 /* Assets.xcassets */; };
 		66036FE51CB4ED200083B0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66036FE31CB4ED200083B0C4 /* LaunchScreen.storyboard */; };
 		66036FF01CB4ED210083B0C4 /* QuickSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66036FEF1CB4ED210083B0C4 /* QuickSampleTests.swift */; };
+		660370011CB4F0810083B0C4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66036FFF1CB4F0810083B0C4 /* Nimble.framework */; };
+		660370021CB4F0810083B0C4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660370001CB4F0810083B0C4 /* Quick.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		66036FEB1CB4ED210083B0C4 /* QuickSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		66036FEF1CB4ED210083B0C4 /* QuickSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSampleTests.swift; sourceTree = "<group>"; };
 		66036FF11CB4ED210083B0C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		66036FFF1CB4F0810083B0C4 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		660370001CB4F0810083B0C4 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +47,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660370011CB4F0810083B0C4 /* Nimble.framework in Frameworks */,
+				660370021CB4F0810083B0C4 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +65,8 @@
 		66036FCE1CB4ED200083B0C4 = {
 			isa = PBXGroup;
 			children = (
+				66036FFF1CB4F0810083B0C4 /* Nimble.framework */,
+				660370001CB4F0810083B0C4 /* Quick.framework */,
 				66036FD91CB4ED200083B0C4 /* QuickSample */,
 				66036FEE1CB4ED210083B0C4 /* QuickSampleTests */,
 				66036FD81CB4ED200083B0C4 /* Products */,
@@ -77,6 +85,7 @@
 		66036FD91CB4ED200083B0C4 /* QuickSample */ = {
 			isa = PBXGroup;
 			children = (
+				66036FFB1CB4EE130083B0C4 /* Libs */,
 				66036FDA1CB4ED200083B0C4 /* AppDelegate.swift */,
 				66036FDC1CB4ED200083B0C4 /* ViewController.swift */,
 				66036FDE1CB4ED200083B0C4 /* Main.storyboard */,
@@ -96,6 +105,13 @@
 			path = QuickSampleTests;
 			sourceTree = "<group>";
 		};
+		66036FFB1CB4EE130083B0C4 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +122,7 @@
 				66036FD31CB4ED200083B0C4 /* Sources */,
 				66036FD41CB4ED200083B0C4 /* Frameworks */,
 				66036FD51CB4ED200083B0C4 /* Resources */,
+				66036FFE1CB4EFE30083B0C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -191,6 +208,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66036FFE1CB4EFE30083B0C4 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66036FD31CB4ED200083B0C4 /* Sources */ = {
@@ -327,6 +362,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QuickSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.yahoo.QuickSample;
@@ -338,6 +377,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QuickSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.yahoo.QuickSample;
