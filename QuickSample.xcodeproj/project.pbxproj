@@ -13,8 +13,10 @@
 		66036FE21CB4ED200083B0C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66036FE11CB4ED200083B0C4 /* Assets.xcassets */; };
 		66036FE51CB4ED200083B0C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66036FE31CB4ED200083B0C4 /* LaunchScreen.storyboard */; };
 		66036FF01CB4ED210083B0C4 /* QuickSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66036FEF1CB4ED210083B0C4 /* QuickSampleTests.swift */; };
-		660370011CB4F0810083B0C4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66036FFF1CB4F0810083B0C4 /* Nimble.framework */; };
-		660370021CB4F0810083B0C4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660370001CB4F0810083B0C4 /* Quick.framework */; };
+		660370061CB4F1840083B0C4 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66036FFF1CB4F0810083B0C4 /* Nimble.framework */; };
+		660370071CB4F1850083B0C4 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 660370001CB4F0810083B0C4 /* Quick.framework */; };
+		660370091CB4F18F0083B0C4 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 66036FFF1CB4F0810083B0C4 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6603700A1CB4F18F0083B0C4 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 660370001CB4F0810083B0C4 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +28,20 @@
 			remoteInfo = QuickSample;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		660370081CB4F1880083B0C4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+				660370091CB4F18F0083B0C4 /* Nimble.framework in CopyFiles */,
+				6603700A1CB4F18F0083B0C4 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		66036FD71CB4ED200083B0C4 /* QuickSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,8 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				660370011CB4F0810083B0C4 /* Nimble.framework in Frameworks */,
-				660370021CB4F0810083B0C4 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				660370061CB4F1840083B0C4 /* Nimble.framework in Frameworks */,
+				660370071CB4F1850083B0C4 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +138,6 @@
 				66036FD31CB4ED200083B0C4 /* Sources */,
 				66036FD41CB4ED200083B0C4 /* Frameworks */,
 				66036FD51CB4ED200083B0C4 /* Resources */,
-				66036FFE1CB4EFE30083B0C4 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -140,6 +155,7 @@
 				66036FE71CB4ED210083B0C4 /* Sources */,
 				66036FE81CB4ED210083B0C4 /* Frameworks */,
 				66036FE91CB4ED210083B0C4 /* Resources */,
+				660370081CB4F1880083B0C4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -208,24 +224,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		66036FFE1CB4EFE30083B0C4 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Nimble.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		66036FD31CB4ED200083B0C4 /* Sources */ = {
@@ -392,6 +390,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QuickSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.yahoo.QuickSampleTests;
@@ -404,6 +406,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = QuickSampleTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.yahoo.QuickSampleTests;
